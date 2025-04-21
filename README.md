@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Product Management Portfolio
+
+A modern, elegant portfolio website built with Next.js, Tailwind CSS, and Framer Motion. This portfolio is designed to showcase product management skills, case studies, and thought leadership.
+
+## Features
+
+- 🎨 **Modern Design**: Clean, elegant UI inspired by Isha Foundation's blog design
+- 📱 **Responsive**: Fully responsive design that works on all devices
+- ✨ **Animations**: Subtle animations using Framer Motion
+- 📝 **Blog System**: MDX-based blog system with beautiful typography
+- 🎯 **SEO Optimized**: Built-in SEO features with Next.js
+- 🌙 **Dark Mode**: Optional dark mode support
+- 🚀 **Performance**: Optimized for fast loading and smooth interactions
+
+## Tech Stack
+
+- [Next.js](https://nextjs.org/) - React framework with App Router
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [Framer Motion](https://www.framer.com/motion/) - Animation library
+- [MDX](https://mdxjs.com/) - Markdown with JSX
+- [@tailwindcss/typography](https://github.com/tailwindlabs/tailwindcss-typography) - For beautiful typography
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/pm-portfolio.git
+   cd pm-portfolio
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Project Structure
+
+```
+src/
+├── app/                    # App router pages
+│   ├── about/             # About page
+│   ├── blog/              # Blog pages
+│   ├── case-studies/      # Case studies
+│   ├── contact/           # Contact page
+│   ├── toolbox/           # Tools and skills
+│   └── page.tsx           # Home page
+├── components/            # React components
+│   ├── layout/            # Layout components
+│   └── ui/                # UI components
+├── content/               # Content files
+│   └── blog/              # Blog posts in MDX
+└── lib/                   # Utility functions
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Writing Blog Posts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Create a new MDX file in `src/content/blog/` with the following frontmatter:
+   ```mdx
+   ---
+   title: "Your Blog Post Title"
+   description: "A brief description of your post"
+   date: "2024-04-20"
+   image: "/path/to/image.jpg"
+   tags: ["PM", "Product Thinking"]
+   ---
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Write your content using MDX syntax
+3. The post will be automatically available at `/blog/your-post-slug`
 
-## Learn More
+## Customization
 
-To learn more about Next.js, take a look at the following resources:
+- Update your personal information in the respective page components
+- Modify the color scheme in `tailwind.config.ts`
+- Add or remove tools in the toolbox section
+- Update the timeline in the about page
+- Add your own case studies
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The easiest way to deploy this portfolio is using [Vercel](https://vercel.com):
 
-## Deploy on Vercel
+1. Push your code to GitHub
+2. Import your repository in Vercel
+3. Deploy!
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Feel free to open issues or submit pull requests for any improvements or bug fixes.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+# portfolio
