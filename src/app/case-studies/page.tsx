@@ -1,83 +1,96 @@
 "use client"
-import Image from "next/image"
-import Link from "next/link"
+import { motion } from 'framer-motion'
 
-const caseStudies = [
-  {
-    id: 1,
-    title: "E-commerce Platform Redesign",
-    description: "Led the redesign of a major e-commerce platform, resulting in a 40% increase in conversion rates.",
-    image: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg",
-    tags: ["Product Design", "User Research", "A/B Testing"],
-    status: "Coming Soon"
-  },
-  {
-    id: 2,
-    title: "Mobile App Development",
-    description: "Managed the development of a mobile app that reached 1M+ downloads in its first year.",
-    image: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg",
-    tags: ["Mobile", "Product Strategy", "Growth"],
-    status: "Coming Soon"
-  },
-  {
-    id: 3,
-    title: "Enterprise SaaS Solution",
-    description: "Built and launched an enterprise SaaS solution that now serves 500+ businesses.",
-    image: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg",
-    tags: ["Enterprise", "B2B", "Product Management"],
-    status: "Coming Soon"
-  }
-]
+import { caseStudies } from '@/constants/case-studies'
+import { tagColors } from '@/constants/colors'
 
 export default function CaseStudies() {
   return (
     <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Case Studies</h2>
-          <p className="mt-2 text-lg leading-8 text-gray-600">
-            A collection of my most impactful product management work
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="mx-auto max-w-2xl text-center"
+        >
+          <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-4">
+            APM Case Studies
+          </h2>
+          <p className="text-lg leading-8 text-gray-600 mb-8">
+            Demonstrating product thinking, analytical skills, and collaboration through real-world scenarios
           </p>
-        </div>
-        <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-          {caseStudies.map((study) => (
-            <article key={study.id} className="flex flex-col items-start">
-              <div className="relative w-full">
-                <Image
-                  src={study.image}
-                  alt={study.title}
-                  width={500}
-                  height={300}
-                  className="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
-                />
-                <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
+          <p className="text-sm text-gray-500 italic">
+            &ldquo;The best way to predict the future is to create it&rdquo;
+          </p>
+        </motion.div>
+
+        <div className="mx-auto mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl">
+          {caseStudies.map((study, index) => (
+            <motion.article 
+              key={study.id}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              className="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100"
+            >
+              <div className="flex flex-wrap gap-2 mb-6">
+                {study.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className={`${tagColors[tag]} px-3 py-1.5 rounded-full text-xs font-medium`}
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
-              <div className="max-w-xl">
-                <div className="mt-8 flex items-center gap-x-4 text-xs">
-                  {study.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
-                    >
-                      {tag}
-                    </span>
+
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                {study.title}
+              </h3>
+              
+              <p className="text-gray-600 mb-8 text-lg">
+                {study.description}
+              </p>
+
+              <div className="space-y-6">
+                <div className="grid grid-cols-3 gap-4">
+                  {study.metrics.map((metric, i) => (
+                    <div key={i} className="bg-gray-50 p-4 rounded-lg text-center">
+                      <span className="text-primary font-semibold block text-sm">
+                        {metric}
+                      </span>
+                    </div>
                   ))}
                 </div>
-                <div className="group relative">
-                  <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                    <span className="absolute inset-0" />
-                    {study.title}
-                  </h3>
-                  <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">{study.description}</p>
-                </div>
-                <div className="mt-6 flex items-center">
-                  <span className="text-sm font-medium text-primary">{study.status}</span>
-                </div>
+                
+                <a
+                  href={study.pdfUrl}
+                  target="_blank"
+                  rel="noopener noreferrer" 
+                  className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white bg-primary rounded-lg hover:bg-primary/90 transition-colors group w-full md:w-auto"
+                >
+                  Read Detailed Analysis
+                  <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </a>
               </div>
-            </article>
+            </motion.article>
           ))}
         </div>
+
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+          className="mt-16 text-center"
+        >
+          <p className="text-gray-600">
+            These case studies demonstrate my approach to product challenges using principles of social proof, authority, and scarcity from Cialdini&apos;s &ldquo;Influence&rdquo;
+          </p>
+        </motion.div>
       </div>
     </div>
   )
-} 
+}
